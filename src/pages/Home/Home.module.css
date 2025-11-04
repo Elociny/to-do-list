@@ -8,3 +8,10 @@
 .nav {
     gap: .75rem; 
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 18rem);
+    gap: 1rem;
+    justify-content: center;
+}

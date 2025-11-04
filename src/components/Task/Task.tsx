@@ -21,8 +21,8 @@ export function Task({ title }: TaskProps) {
                 <TextArea id="description" label="Descrição" />
 
                 <div className={`row ${style.buttons}`}>
-                    <Button text="botão" color="azul"/> 
-                    <Button text="botão" color="transparente"/> 
+                    <Button text="excluir" color="transparente"/> 
+                    <Button text="alterar" color="azul"/> 
                 </div>
             </div>
         </div>
