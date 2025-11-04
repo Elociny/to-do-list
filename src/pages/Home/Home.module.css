@@ -1,0 +1,10 @@
+.title {
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--azul-escuro);
+}
+
+.nav {
+    gap: .75rem; 
+}

@@ -1,0 +1,27 @@
+.navegation {
+    color: var(--branco);
+    font-size: 1rem;
+
+    padding: .25rem .75rem; 
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+
+    border-radius: .25rem;
+
+    transition: .5s;
+
+    cursor: pointer;
+
+    &.azul {
+        background-color: var(--azul);
+    }
+
+    &.azul-escuro {
+        background-color: var(--azul-escuro);
+    }
+
+    &:hover {
+        background-color: var(--amarelo);
+    }
+}

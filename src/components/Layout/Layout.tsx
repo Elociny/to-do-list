@@ -8,14 +8,12 @@ type LayoutProps = {
     children: ReactNode;
 };
 
-
-
 export function Layout({ children }: LayoutProps) {
     return (
         <>
             <Header />
 
-            <main className={`padding ${style.layout}`}>
+            <main className={`padding row ${style.layout}`}>
                 {children}
             </main>
 

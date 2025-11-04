@@ -1,0 +1,39 @@
+.button {
+    padding: .75rem;
+    min-width: 6.25rem;
+    
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 0;
+
+    font-size: .8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    border-radius: .5rem;
+    border: 2px solid var(--azul-escuro);
+
+    transition: .5s;
+
+    cursor: pointer;
+}
+
+.azul {
+    background-color: var(--azul-escuro);
+
+    color: var(--branco);
+}
+
+.transparente {
+    background-color: transparent;
+
+    color: var(--azul-escuro);
+}
+
+.button:hover {
+    background-color: var(--azul);
+
+    color: var(--branco);
+
+    border: 2px solid var(--azul);
+}
