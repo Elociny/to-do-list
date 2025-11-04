@@ -1,0 +1,16 @@
+.header {
+    background-color: var(--azul-escuro);
+
+    color: var(--branco);
+}
+
+ul {
+    list-style: none;
+
+    justify-content: space-between;
+
+    li i {
+        font-size: 1.5rem;
+    }
+}
+

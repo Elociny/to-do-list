@@ -16,7 +16,16 @@
     font-family: "Poppins", sans-serif;
 }
 
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+.row {
+    display: flex;
+}
+
 .padding {
-    padding: 0 6.25rem;
+    padding: .75rem 6.25rem;
 }
 
