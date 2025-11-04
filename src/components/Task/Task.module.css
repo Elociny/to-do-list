@@ -1,0 +1,33 @@
+.task {
+    border: 2px solid var(--azul-escuro);
+
+    border-radius: .5rem;
+
+    width: 18rem;
+
+    .title {
+        background-color: var(--azul-escuro);
+        color: var(--branco);
+
+        background-color: var(--azul-escuro);
+        padding: .75rem;
+
+        color: var(--branco);
+
+        h2 {
+            font-size: 1.25rem;
+            text-align: center;
+        }
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        padding: .75rem;
+
+        .buttons {
+            gap: .75rem;
+        }
+    }
+}

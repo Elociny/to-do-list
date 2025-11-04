@@ -1,0 +1,15 @@
+.state {
+    background-color: red;
+    padding: .25rem;
+    color: var(--branco);
+
+    border-radius: .25rem;
+
+    &.atrasado {
+        background-color: var(--amarelo);
+    }
+
+    &.concluido {
+        background-color: var(--bege);
+    }
+}
