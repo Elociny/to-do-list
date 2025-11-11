@@ -1,9 +1,15 @@
  import style from "./Modals.module.css"
 
- export function Update () {
-    return(
-        <div className={`${style.modal}`}>
+ interface UpdateProps {
+    onClose?: () => void
+ }
 
+ export function Update ({ onClose }: UpdateProps) {
+    return(
+        <div className={`${style.background}`} onClick={onClose}>
+            <div className={`${style.modal}`} onClick={(e) => e.stopPropagation()}>
+                
+            </div>
         </div>
     )
  }
