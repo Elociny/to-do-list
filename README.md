@@ -105,3 +105,13 @@ Aqui estão os diferentes estados da aplicação:
 | 📅 Filtro: Para Fazer | 📅 Filtro: Atrasadas |
 |:---:|:---:|
 | ![Atrasadas](src/images/screenshots/para_fazer.png) | ![Pendentes](src/images/screenshots/atrasadas.png) |
+
+---
+
+## 🤝 Autor
+
+Feito com 💜 por **Elociny**.
+
+Entre em contato ou veja outros projetos em:
+* **GitHub:** [Elociny](https://github.com/Elociny)
+* **LinkedIn:** [Nicole Lins Coelho](https://www.linkedin.com/in/nicolelinscoelho/)
