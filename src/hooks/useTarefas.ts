@@ -11,7 +11,8 @@ export const useTarefas = () => {
         queryFn: async () => {
             const response = await api.get<ITarefa[]>('/tarefas')
             return response.data
-        }
+        },
+        retry: 1
     })
 
     const createMutation = useMutation({
@@ -46,6 +47,10 @@ export const useTarefas = () => {
     return {
         tarefas: query.data,
         isLoading: query.isLoading,
+        isError: query.isError,
+        error: query.error,
+        refetch: query.refetch,
+        
         criarTarefa: createMutation.mutate,
         excluirTarefa: deleteMutation.mutate,
         alterarTarefa: updateMutation.mutate

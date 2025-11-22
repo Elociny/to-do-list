@@ -7,13 +7,15 @@ import { Task } from "../../components/Task/Task";
 
 import style from "./Home.module.css"
 import { useTarefas } from "../../hooks/useTarefas";
+import { Spinner } from "../../components/Spinner/Spinner";
+import { Empty } from "../../components/Empty/Empty";
 
 export function Home() {
     const [showModal, setShowModal] = useState(false)
 
     const [filtroAtivo, setFiltroAtivo] = useState<"pendentes" | "atrasadas">("pendentes")
 
-    const { tarefas, isLoading } = useTarefas()
+    const { tarefas, isLoading, isError } = useTarefas()
 
     const getHojeFormatado = () => {
         const hoje = new Date
@@ -65,10 +67,24 @@ export function Home() {
                 />
             </div>
 
-            <div className={`${style.grid}`}>
-                {isLoading && <p>Carregando tarefas...</p>}
+            {isLoading && <Spinner />}
 
-                {tarefasFiltradas?.map((item) => (
+            {!isLoading && isError && (
+                <Empty tipo="error" />
+            )}
+
+            {!isLoading && !isError && tarefasFiltradas?.length === 0 && (
+                <Empty tipo="empty">
+                    <Button
+                        color="azul"
+                        text="criar nova tarefa"
+                        onClick={() => setShowModal(true)}
+                    />
+                </Empty>
+            )}
+
+            <div className={`${style.grid}`}>
+                {!isLoading && !isError && tarefasFiltradas?.map((item) => (
                     <Task
                         key={item.id}
                         dados={item}
