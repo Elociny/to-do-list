@@ -14,14 +14,11 @@
     cursor: pointer;
 
     &.azul {
-        background-color: var(--azul);
+        color: var(--azul);
+        text-decoration: underline;
     }
 
     &.azul-escuro {
         background-color: var(--azul-escuro);
-    }
-
-    &:hover {
-        background-color: var(--amarelo);
     }
 }

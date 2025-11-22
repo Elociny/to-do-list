@@ -17,6 +17,23 @@ interface DateProps {
 }
 
 export function DateInput({ id, label, state, value, onChange, readOnly }: DateProps) {
+    
+    const calcularEstadoAutomatico = () => {
+        if (state) return state;
+
+        if (!value) return null;
+
+        const hoje = new Date().toISOString().split('T')[0];
+
+        if (value < hoje) {
+            return { text: "atrasado", type: "atrasado" } as const;
+        }
+
+        return null;
+    };
+
+    const estadoParaMostrar = calcularEstadoAutomatico();
+
     return (
         <div className={`row ${style.prazo}`}>
             <div className={`${style.left}`}>
@@ -30,13 +47,15 @@ export function DateInput({ id, label, state, value, onChange, readOnly }: DateP
                         onChange={onChange}
                         readOnly={readOnly}
                     />
-                    <button>
+                    <button type="button">
                         <i className="bi bi-calendar-event"></i>
                     </button>
                 </div>
             </div>
 
-            {state && <State text={state.text} type={state.type} />}
+            {estadoParaMostrar && (
+                <State text={estadoParaMostrar.text} type={estadoParaMostrar.type} />
+            )}
         </div>
     )
 }
