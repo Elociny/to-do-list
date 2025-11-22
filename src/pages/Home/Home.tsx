@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Button } from "../../components/Button/Button";
 import { Layout } from "../../components/Layout/Layout";
-import { Create } from "../../components/Modals/Create";
+import { TaskModal } from "../../components/Modals/TaskModal";
 import { Nav } from "../../components/Nav/Nav";
 import { Task } from "../../components/Task/Task";
 
 import style from "./Home.module.css"
+import { useTarefas } from "../../hooks/useTarefas";
 
 export function Home() {
     const [showModal, setShowModal] = useState(false)
+
+    const { tarefas, isLoading } = useTarefas()
 
     return (
         <Layout>
@@ -30,20 +33,20 @@ export function Home() {
             </div>
 
             <div className={`${style.grid}`}>
-                <Task title="titulo" />
-                <Task title="titulo" />
-                <Task title="titulo" />
-                <Task title="titulo" />
-                <Task title="titulo" />
-                <Task title="titulo" />
+                { isLoading && <p>Carregando tarefas...</p> }
+
+                {tarefas?.map((item) => (
+                    <Task
+                        key={item.id}
+                        dados={item} 
+                    />
+                ))}
             </div>
 
             {showModal && (
-                <Create
-                    title="criar tarefa"
+                <TaskModal
                     onClose={() => setShowModal(false)}
                 />
-
             )}
 
         </Layout>

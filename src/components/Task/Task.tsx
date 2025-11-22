@@ -1,33 +1,60 @@
 import { useState } from "react"
 import { Button } from "../Button/Button"
-import { Date } from "../Inputs/Date"
 import { Text } from "../Inputs/Text"
 import { TextArea } from "../Inputs/TextArea"
-import { Update } from "../Modals/Update"
 
 import style from "./Task.module.css"
 import { Delete } from "../Modals/Delete"
+import { useTarefas } from "../../hooks/useTarefas"
+import type { ITarefa } from "../../types/ITarefa"
+import { DateInput } from "../Inputs/DateInput"
+import { TaskModal } from "../Modals/TaskModal"
 
 interface TaskProps {
-    title: string
+    dados: ITarefa
     onClose?: () => void
 }
 
-export function Task({ title, onClose }: TaskProps) {
+export function Task({ dados, onClose }: TaskProps) {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showUpdateModal, setshowUpdateModal] = useState(false)
+
+    const { excluirTarefa } = useTarefas()
+
+    const handleDelete = () => {
+        if (dados.id) {
+            excluirTarefa(dados.id)
+            setShowDeleteModal(false)
+        }
+    }
 
     return (
         <div className={`${style.background}`} onClick={onClose}>
             <div className={`${style.task}`} onClick={(e) => e.stopPropagation()}>
                 <div className={`${style.title}`}>
-                    <h2>{title}</h2>
+                    <h2>{dados.titulo}</h2>
                 </div>
 
                 <div className={`${style.main}`}>
-                    <Text id="person" label="Responsável" />
-                    <Date id="date" label="Prazo" />
-                    <TextArea id="description" label="Descrição" />
+                    <Text
+                        id={`resp-${dados.id}`}
+                        label="Responsável"
+                        placeholder=""
+                        value={dados.responsavel}
+                        readOnly
+                    />
+                    <DateInput
+                        id={`date-${dados.id}`}
+                        label="Prazo"
+                        value={dados.dataTermino}
+                        readOnly
+                    />
+                    <TextArea
+                        id={`desc-${dados.id}`}
+                        label="Descrição"
+                        value={dados.descricao}
+                        readOnly
+                    />
 
                     <div className={`row ${style.buttons}`}>
                         <Button text="excluir" color="transparente" onClick={() => setShowDeleteModal(true)} />
@@ -37,12 +64,24 @@ export function Task({ title, onClose }: TaskProps) {
             </div>
 
             {showUpdateModal && (
-                <Update onClose={() => setshowUpdateModal(false)} />
+                <TaskModal
+                    onClose={() => setshowUpdateModal(false)}
+                    taskToEdit={dados} 
+                />
             )}
 
             {showDeleteModal && (
                 <Delete onClose={() => setShowDeleteModal(false)}>
-                    <p>A tarefa Título da tarefa será excluida permanentemente. Tem certeza que deseja exclui-lá?</p>
+                    <p>Tem certeza que deseja excluir a tarefa <strong>{dados.titulo}</strong>?</p>
+
+                    <div className={`row ${style.buttons}`}>
+                        <Button color="transparente" text="cancelar" onClick={() => setShowDeleteModal(false)} />
+                        <Button
+                            color="azul"
+                            text="excluir"
+                            onClick={handleDelete}
+                        />
+                    </div>
                 </Delete>
             )}
         </div>

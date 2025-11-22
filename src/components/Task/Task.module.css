@@ -14,9 +14,18 @@
 
         color: var(--branco);
 
+
+
         h2 {
             font-size: 1.25rem;
             text-align: center;
+            text-transform: capitalize;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: block;
         }
     }
 
@@ -30,4 +39,8 @@
             gap: .75rem;
         }
     }
+}
+
+.buttons {
+    gap: .75rem;
 }

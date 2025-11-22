@@ -48,6 +48,10 @@
             background-color: transparent;
         }
 
+        .date input {
+            color: var(--azul-escuro);
+        }
+
         input {
             border: none;
             border-bottom: 2px solid var(--azul-escuro);

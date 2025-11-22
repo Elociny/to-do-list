@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import style from "./Modals.module.css"
-import { Button } from "../Button/Button";
 
 type DeleteProps = {
     children: ReactNode;
@@ -17,11 +16,6 @@ export function Delete({ children, onClose }: DeleteProps) {
 
                 <div className={`${style.main}`}>
                     {children}
-
-                    <div className={`row ${style.buttons}`}>
-                        <Button color="transparente" text="cancelar" onClick={onClose} />
-                        <Button color="azul" text="excluir" />
-                    </div>
                 </div>
             </div>
         </div>
