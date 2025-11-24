@@ -9,4 +9,11 @@
     align-items: center;
     justify-content: center;
     gap: .75rem;
+
+    text-align: center;
+
+    hr {
+        width: 100%;
+        border: 1px solid var(--azul);
+    }
 }

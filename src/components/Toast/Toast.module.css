@@ -1,17 +1,17 @@
 .container {
     position: fixed;
-    top: 1.25rem;
+    top: 4rem;
     right: 1.25rem;
     color: var(--branco);
     padding: 1rem 1.5rem;
     border-radius: 8px;
     border: 2px solid var(--bege);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
     gap: .75rem;
     z-index: 1000;
-    
+
     animation: slideIn 0.5s ease-out forwards;
 }
 
@@ -36,8 +36,15 @@
         transform: translateX(100%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        right: .75rem;
     }
 }
