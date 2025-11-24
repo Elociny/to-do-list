@@ -2,7 +2,7 @@
 
 <div align="center">
   
-  ![Capa do Projeto](src/images/screenshots/app.gif)
+  ![Capa do Projeto](src/images/screenshots/application.gif)
   
 </div>
 
