@@ -1,6 +1,6 @@
 import style from "./Logo.module.css"
 
-import logoIcon from "../../assets/images/icon.svg"
+import logoIcon from "../../images/icon.svg"
 import { NavLink } from "react-router"
 
 export function Logo() {
