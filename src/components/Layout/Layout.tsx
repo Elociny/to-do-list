@@ -10,7 +10,7 @@ type LayoutProps = {
 
 export function Layout({ children }: LayoutProps) {
     return (
-        <>
+        <div className={`${style.container}`}>
             <Header />
 
             <main className={`padding row ${style.layout}`}>
@@ -18,6 +18,6 @@ export function Layout({ children }: LayoutProps) {
             </main>
 
             <Footer />
-        </>
+        </div>
     )
 }

@@ -1,6 +1,13 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
 .layout {
+    flex: 1;
     flex-direction: column;
     gap: .75rem;
-
     background-color: var(--branco);
 }

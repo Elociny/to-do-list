@@ -12,10 +12,11 @@ import { TaskModal } from "../Modals/TaskModal"
 
 interface TaskProps {
     dados: ITarefa
+    onSuccessMessage?: (msg: string) => void
     onClose?: () => void
 }
 
-export function Task({ dados, onClose }: TaskProps) {
+export function Task({ dados, onClose, onSuccessMessage }: TaskProps) {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showUpdateModal, setshowUpdateModal] = useState(false)
 
@@ -23,8 +24,15 @@ export function Task({ dados, onClose }: TaskProps) {
 
     const handleDelete = () => {
         if (dados.id) {
-            excluirTarefa(dados.id)
-            setShowDeleteModal(false)
+            excluirTarefa(dados.id, {
+                onSuccess: () => {
+                    setShowDeleteModal(false)
+
+                    if (onSuccessMessage) {
+                        onSuccessMessage("Tarefa excluida com sucesso!")
+                    }
+                }
+            })
         }
     }
 
@@ -66,7 +74,8 @@ export function Task({ dados, onClose }: TaskProps) {
             {showUpdateModal && (
                 <TaskModal
                     onClose={() => setshowUpdateModal(false)}
-                    taskToEdit={dados} 
+                    taskToEdit={dados}
+                    onSuccess={() => onSuccessMessage?.("Tarefa alterada com sucesso")}
                 />
             )}
 
@@ -75,7 +84,11 @@ export function Task({ dados, onClose }: TaskProps) {
                     <p>Tem certeza que deseja excluir a tarefa <strong>{dados.titulo}</strong>?</p>
 
                     <div className={`row ${style.buttons}`}>
-                        <Button color="transparente" text="cancelar" onClick={() => setShowDeleteModal(false)} />
+                        <Button
+                            color="transparente"
+                            text="cancelar"
+                            onClick={() => setShowDeleteModal(false)}
+                        />
                         <Button
                             color="azul"
                             text="excluir"

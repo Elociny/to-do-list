@@ -1,5 +1,6 @@
 .header {
     background-color: var(--azul-escuro);
+    justify-content: space-between;
 
     color: var(--branco);
 }
@@ -12,5 +13,9 @@ ul {
     li i {
         font-size: 1.5rem;
     }
+}
+
+.redes {
+    gap: 1rem;
 }
 

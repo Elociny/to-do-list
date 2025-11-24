@@ -8,11 +8,12 @@ import { DateInput } from "../Inputs/DateInput";
 import style from "./Modals.module.css";
 
 interface TaskModalProps {
-    onClose: () => void;
-    taskToEdit?: ITarefa;
+    onClose: () => void
+    taskToEdit?: ITarefa
+    onSuccess?: () => void
 }
 
-export function TaskModal({ onClose, taskToEdit }: TaskModalProps) {
+export function TaskModal({ onClose, taskToEdit, onSuccess }: TaskModalProps) {
     const { criarTarefa, alterarTarefa } = useTarefas();
 
     const isEditMode = !!taskToEdit;
@@ -29,16 +30,23 @@ export function TaskModal({ onClose, taskToEdit }: TaskModalProps) {
             responsavel,
             dataTermino,
             descricao
-        };
+        }
+
+        const handleSuccess = () => {
+            onClose()
+            if(onSuccess) {
+                onSuccess()
+            }
+        }
 
         if (isEditMode) {
             alterarTarefa(dadosFormulario, {
-                onSuccess: () => onClose()
-            });
+                onSuccess: () => handleSuccess()
+            })
         } else {
             criarTarefa(dadosFormulario, {
-                onSuccess: () => onClose()
-            });
+                onSuccess: () => handleSuccess()
+            })
         }
     };
 

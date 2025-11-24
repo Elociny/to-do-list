@@ -9,6 +9,7 @@ import style from "./Home.module.css"
 import { useTarefas } from "../../hooks/useTarefas";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { Empty } from "../../components/Empty/Empty";
+import { Toast } from "../../components/Toast/Toast";
 
 export function Home() {
     const [showModal, setShowModal] = useState(false)
@@ -16,6 +17,20 @@ export function Home() {
     const [filtroAtivo, setFiltroAtivo] = useState<"pendentes" | "atrasadas">("pendentes")
 
     const { tarefas, isLoading, isError } = useTarefas()
+
+    const [toast, setToast] = useState({
+        visible: false,
+        message: '',
+        type: 'success' as 'success' | 'error' | "update"
+    });
+
+    const showToast = (message: string, type: 'success' | 'error' | 'update' = 'success') => {
+        setToast({ visible: true, message, type });
+    };
+
+    const hideToast = () => {
+        setToast((prev) => ({ ...prev, visible: false }));
+    };
 
     const getHojeFormatado = () => {
         const hoje = new Date
@@ -88,13 +103,31 @@ export function Home() {
                     <Task
                         key={item.id}
                         dados={item}
+                        onSuccessMessage={(msg) => {
+                            if (msg.includes("excluída") || msg.includes("excluida")) {
+                                showToast(msg, "error")
+                            } else if (msg.includes("alterada")) {
+                                showToast(msg, "update");
+                            } else {
+                                showToast(msg, "success");
+                            }
+                        }}
                     />
                 ))}
             </div>
 
+            {toast.visible && (
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={hideToast}
+                />
+            )}
+
             {showModal && (
                 <TaskModal
                     onClose={() => setShowModal(false)}
+                    onSuccess={() => showToast("Tarefa salva com sucesso!", "success")}
                 />
             )}
 
